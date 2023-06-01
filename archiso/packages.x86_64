@@ -20,8 +20,11 @@ sysfsutils
 mkinitcpio
 mkinitcpio-archiso
 mkinitcpio-nfs-utils
+<<<<<<< HEAD
 edk2-shell
 syslinux
+=======
+>>>>>>> 94d7526 (Add zsh to live system)
 zsh
 
 ## Filesystems
