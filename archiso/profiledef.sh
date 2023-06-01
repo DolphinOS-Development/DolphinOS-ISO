@@ -8,8 +8,12 @@ iso_application="DolphinOS installation ISO"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d.%H.%M)"
 install_dir="dolphinos"
 buildmodes=('iso')
+<<<<<<< HEAD
 bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'
            'uefi-x64.systemd-boot.esp' 'uefi-x64.systemd-boot.eltorito')
+=======
+bootmodes=('uefi-x64.systemd-boot.esp' 'uefi-x64.systemd-boot.eltorito')
+>>>>>>> f07a72e (Set and configure SystemD-boot)
 arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
