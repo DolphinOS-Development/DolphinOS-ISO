@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034
 
+<<<<<<< HEAD
 iso_name="dolphinos-nvidia"
 iso_label="DOLPHINOS_NVIDIA_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m%d%H%M)"
 iso_publisher="DolphinOS <https://github.com/DolphinOS-Development>"
@@ -10,6 +11,16 @@ install_dir="dolphinos"
 buildmodes=('iso')
 bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'
            'uefi-x64.systemd-boot.esp' 'uefi-x64.systemd-boot.eltorito')
+=======
+iso_name="dolphinos"
+iso_label="DOLPHINOS_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m%d%H%M)"
+iso_publisher="DolphinOS <https://github.com/DolphinOS-Development>"
+iso_application="DolphinOS installation ISO"
+iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d.%H.%M)"
+install_dir="dolphinos"
+buildmodes=('iso')
+bootmodes=('uefi-x64.grub.esp' 'uefi-x64.grub.eltorito')
+>>>>>>> 50378f8 (Set up build workflow)
 arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
