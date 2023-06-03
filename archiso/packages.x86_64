@@ -210,6 +210,7 @@ grub-btrfs
 dolphinos-calamares
 dolphinos-calamares-configs
 ckbcomp
+<<<<<<< HEAD
 dolphinos-iso-configs
 
 # DolphinOS
@@ -224,3 +225,6 @@ cubeb
 libspng
 gamemode
 mangohud
+=======
+dolphinos-iso-configs
+>>>>>>> f7d3488 (Add dolphinos-iso-configs package)
