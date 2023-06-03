@@ -168,9 +168,13 @@ xdg-user-dirs-gtk
 xdg-utils
 xz
 <<<<<<< HEAD
+<<<<<<< HEAD
 openbox
 noto-fonts
 =======
+=======
+openbox
+>>>>>>> 18c1fed (Updated needed packages)
 noto-fonts
 
 # VM SUPPORT
