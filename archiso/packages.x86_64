@@ -171,9 +171,13 @@ xdg-user-dirs-gtk
 xdg-utils
 xz
 <<<<<<< HEAD
+<<<<<<< HEAD
 openbox
 =======
 >>>>>>> a5f1511 (Autostart calamares and add some packages)
+=======
+openbox
+>>>>>>> 18c1fed (Updated needed packages)
 noto-fonts
 
 # VM SUPPORT
