@@ -20,11 +20,16 @@ iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d.%H.%M)
 install_dir="dolphinos"
 buildmodes=('iso')
 <<<<<<< HEAD
+<<<<<<< HEAD
 bootmodes=('uefi-x64.grub.esp' 'uefi-x64.grub.eltorito')
 >>>>>>> 50378f8 (Set up build workflow)
 =======
 bootmodes=('uefi-x64.systemd-boot.esp' 'uefi-x64.systemd-boot.eltorito')
 >>>>>>> f07a72e (Set and configure SystemD-boot)
+=======
+bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'
+           'uefi-x64.systemd-boot.esp' 'uefi-x64.systemd-boot.eltorito')
+>>>>>>> ace9c53 (Add bios boot so kernel is added to live system :()
 arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
