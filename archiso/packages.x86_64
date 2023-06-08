@@ -234,4 +234,8 @@ mangohud
 dolphinos-calamares-configs
 ckbcomp
 dolphinos-iso-configs
+<<<<<<< HEAD
 >>>>>>> f7d3488 (Add dolphinos-iso-configs package)
+=======
+dolphinos-configs
+>>>>>>> 3921351 (Added dolphinos-configs)
