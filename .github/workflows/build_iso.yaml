@@ -201,6 +201,7 @@ jobs:
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
+<<<<<<< HEAD
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
@@ -237,6 +238,9 @@ jobs:
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
         rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
+=======
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
+>>>>>>> 1502ef9 (Maybe this works #2)
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
 <<<<<<< HEAD
