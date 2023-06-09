@@ -207,6 +207,7 @@ jobs:
         ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 >>>>>>> 3ed5057 (Set SSH configs for NVIDIA ISO version)
 =======
@@ -228,6 +229,13 @@ jobs:
         rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 
 >>>>>>> 9486767 (Check rsync SSH)
+=======
+        eval $(ssh-agent)
+        ssh-add - <<< "$SSH_KEY
+        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+      env:
+        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+>>>>>>> 7dc42b9 (Trying something #5)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
