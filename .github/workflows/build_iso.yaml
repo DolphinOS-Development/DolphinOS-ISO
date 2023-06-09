@@ -28,6 +28,7 @@ jobs:
 =======
       run: | 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0b57308 (Correctly set timezone)
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager
 <<<<<<< HEAD
@@ -38,6 +39,9 @@ jobs:
 >>>>>>> b56d16e (Set up releases to Sourceforge)
 =======
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync
+=======
+        pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh
+>>>>>>> a878be4 (Add openssh to required packages)
         reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 >>>>>>> 70f045c (Fix typo)
         pacman -Syu --noconfirm
