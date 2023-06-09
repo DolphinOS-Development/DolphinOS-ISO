@@ -212,8 +212,11 @@ jobs:
 =======
 =======
         echo "${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" > ~/.ssh/authorized_keys
+<<<<<<< HEAD
 >>>>>>> ec6fe2f (Trying somethin #1)
         #rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+=======
+>>>>>>> bf64d1c (Trying something #2)
         rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 
 >>>>>>> 9486767 (Check rsync SSH)
