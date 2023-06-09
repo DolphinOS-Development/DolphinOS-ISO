@@ -205,6 +205,7 @@ openbox
 >>>>>>> 18c1fed (Updated needed packages)
 noto-fonts
 
+<<<<<<< HEAD
 # VM SUPPORT
 
 ## Qemu
@@ -222,6 +223,8 @@ xf86-input-vmmouse
 xf86-video-vmware
 >>>>>>> a5f1511 (Autostart calamares and add some packages)
 
+=======
+>>>>>>> 4f454fd (Removed VM packages in NVIDIA version)
 # INSTALLER
 
 ## Live iso specific
