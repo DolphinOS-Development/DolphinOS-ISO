@@ -60,6 +60,7 @@ jobs:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - uses: actions/checkout@v3
       with:
         ref: nvidia
@@ -91,12 +92,15 @@ jobs:
     #     body: "Automatically built latest ISO"
     #     make_latest: true
 =======
+=======
+>>>>>>> 8dbd6db (This time will work, I can feel it)
     - name: Build ISO
       run: |
         mkdir work
         mkdir build
         mkarchiso -v -w work -o build archiso
         rm -rf work
+<<<<<<< HEAD
 <<<<<<< HEAD
     - name: Upload ISO to releases
       uses: ncipollo/release-action@v1
@@ -160,6 +164,28 @@ jobs:
     #     mkarchiso -v -w work -o build archiso
     #     rm -rf work
 >>>>>>> 9486767 (Check rsync SSH)
+=======
+    - name: Upload ISO to Sourceforge Releases
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
+        eval $(ssh-agent)
+        ssh-add - <<< "$SSH_KEY"
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
+      env:
+        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+    - uses: actions/checkout@v3
+      with:
+        ref: nvidia
+    - name: Build NVIDIA ISO
+      run: |
+        rm -rf work
+        rm -rf build
+        mkdir work
+        mkdir build
+        mkarchiso -v -w work -o build archiso
+        rm -rf work
+>>>>>>> 8dbd6db (This time will work, I can feel it)
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
         mkdir -p ~/.ssh
@@ -201,6 +227,7 @@ jobs:
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
+<<<<<<< HEAD
 <<<<<<< HEAD
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
       env:
@@ -245,12 +272,18 @@ jobs:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
 <<<<<<< HEAD
 >>>>>>> 7dc42b9 (Trying something #5)
+=======
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
+      env:
+        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+>>>>>>> 8dbd6db (This time will work, I can feel it)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
         body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
         tag: "DolphinOS-ISO-${{ env.NOW }}"
         allowUpdates: true
+<<<<<<< HEAD
         makeLatest: true
 =======
         file_glob: true
@@ -298,3 +331,6 @@ jobs:
     #     allowUpdates: true
     #     makeLatest: true
 >>>>>>> a6cd2d7 (Trying something #6)
+=======
+        makeLatest: true
+>>>>>>> 8dbd6db (This time will work, I can feel it)
