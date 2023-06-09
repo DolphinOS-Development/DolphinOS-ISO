@@ -231,7 +231,7 @@ jobs:
 >>>>>>> 9486767 (Check rsync SSH)
 =======
         eval $(ssh-agent)
-        ssh-add - <<< "$SSH_KEY
+        ssh-add - <<< "$SSH_KEY"
         rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
