@@ -29,8 +29,12 @@ jobs:
       run: | 
 >>>>>>> 0b57308 (Correctly set timezone)
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager
+<<<<<<< HEAD
 >>>>>>> 4de7316 (Change timezone)
         reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+=======
+        reflector rsync --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+>>>>>>> b56d16e (Set up releases to Sourceforge)
         pacman -Syu --noconfirm
         useradd builduser -m
         passwd -d builduser
@@ -80,6 +84,7 @@ jobs:
         mkdir build
         mkarchiso -v -w work -o build archiso
         rm -rf work
+<<<<<<< HEAD
     - name: Upload ISO to releases
       uses: ncipollo/release-action@v1
       with:
@@ -103,6 +108,12 @@ jobs:
     #     body: "Automatically built latest ISO"
     #     make_latest: true
 >>>>>>> 436048e (Replaced upload to relases action)
+=======
+    - name: Upload ISO to Sourceforge Releases
+      run: |
+        ssh-keyscan -H frs.sourceforge.net >> ~/.ssh/known_hosts
+        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS
+>>>>>>> b56d16e (Set up releases to Sourceforge)
     - uses: actions/checkout@v3
       with:
         ref: nvidia
@@ -115,6 +126,7 @@ jobs:
         mkdir build
         mkarchiso -v -w work -o build archiso
         rm -rf work
+<<<<<<< HEAD
 <<<<<<< HEAD
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
@@ -175,12 +187,19 @@ jobs:
         make_latest: true
 >>>>>>> 04d1f27 (Changed upload to release settings)
 =======
+=======
+    - name: Upload NVIDIA ISO to Sourceforge releases
+      run: |
+        ssh-keyscan -H frs.sourceforge.net >> ~/.ssh/known_hosts
+        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+    - name: Publish Sourceforge link to releases
+>>>>>>> b56d16e (Set up releases to Sourceforge)
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "build/dolphinos*.iso"
-        body: "Automatically built latest ISO"
+        body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
         tag: "DolphinOS-ISO-${{ env.NOW }}"
         allowUpdates: true
+<<<<<<< HEAD
         makeLatest: true
       # uses: svenstaro/upload-release-action@v2
       # with:
@@ -192,3 +211,6 @@ jobs:
       #   body: "Automatically built latest ISO"
       #   make_latest: true
 >>>>>>> 436048e (Replaced upload to relases action)
+=======
+        makeLatest: true
+>>>>>>> b56d16e (Set up releases to Sourceforge)
