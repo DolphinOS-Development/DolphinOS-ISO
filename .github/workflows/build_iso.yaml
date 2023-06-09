@@ -44,6 +44,7 @@ jobs:
         sudo -u builduser yay -S --noconfirm cubeb libspng
     - name: Set current date and hour as environment variable
       run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
+<<<<<<< HEAD
     - uses: actions/checkout@v3
       with:
         ref: nvidia
@@ -54,12 +55,34 @@ jobs:
         pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
         cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
+=======
+    # - name: Build ISO
+    #   run: |
+    #     mkdir work
+    #     mkdir build
+    #     mkarchiso -v -w work -o build archiso
+    #     rm -rf work
+    # - name: Upload ISO to releases
+    #   uses: svenstaro/upload-release-action@v2
+    #   with:
+    #     file_glob: true
+    #     file: build/dolphinos*.iso
+    #     tag: DolphinOS-ISO-${{ env.NOW }}
+    #     prerelease: false
+    #     overwrite: true
+    #     body: "Automatically built latest ISO"
+    #     make_latest: true
+    - uses: actions/checkout@v3
+      with:
+        ref: nvidia
+>>>>>>> f790810 (Setup action for building NVIDIA image)
     - name: Build NVIDIA ISO
       run: |
         mkdir work
         mkdir build
         mkarchiso -v -w work -o build archiso
         rm -rf work
+<<<<<<< HEAD
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
         mkdir -p ~/.ssh
@@ -70,6 +93,10 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
     - uses: actions/checkout@v3
+=======
+    - name: Upload NVIDIA ISO to releases
+      uses: svenstaro/upload-release-action@v2
+>>>>>>> f790810 (Setup action for building NVIDIA image)
       with:
 <<<<<<< HEAD
         ref: main
