@@ -70,6 +70,7 @@ intel-ucode
 
 ## GPU
 <<<<<<< HEAD
+<<<<<<< HEAD
 nvidia-dkms
 nvidia-utils
 nvidia-settings
@@ -87,6 +88,14 @@ vulkan-intel
 xf86-input-libinput
 xf86-video-amdgpu
 >>>>>>> cbc963c (Set correct driversn for Intel/AMD GPUs)
+=======
+nvidia-dkms
+nvidia-utils
+nvidia-settings
+
+## X system
+xf86-input-libinput
+>>>>>>> 4d1a34b (Setting up configs for NVIDIA drivers)
 xorg-server
 xorg-xdpyinfo
 xorg-xinit
