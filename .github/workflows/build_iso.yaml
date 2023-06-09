@@ -232,9 +232,11 @@ jobs:
 =======
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
-        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+        ssh-add
+        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+<<<<<<< HEAD
 >>>>>>> 7dc42b9 (Trying something #5)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
@@ -280,3 +282,12 @@ jobs:
 =======
         makeLatest: true
 >>>>>>> b56d16e (Set up releases to Sourceforge)
+=======
+    # - name: Publish Sourceforge link to releases
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
+    #     tag: "DolphinOS-ISO-${{ env.NOW }}"
+    #     allowUpdates: true
+    #     makeLatest: true
+>>>>>>> a6cd2d7 (Trying something #6)
