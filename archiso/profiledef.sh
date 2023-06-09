@@ -2,6 +2,7 @@
 # shellcheck disable=SC2034
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 iso_name="dolphinos-nvidia"
 iso_label="DOLPHINOS_NVIDIA_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m%d%H%M)"
 iso_publisher="DolphinOS <https://github.com/DolphinOS-Development>"
@@ -14,8 +15,12 @@ bootmodes=('bios.syslinux.mbr' 'bios.syslinux.eltorito'
 =======
 iso_name="dolphinos"
 iso_label="DOLPHINOS_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m%d%H%M)"
+=======
+iso_name="dolphinos-nvidia"
+iso_label="DOLPHINOS_NVIDIA_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m%d%H%M)"
+>>>>>>> 1559cb9 (Change name for NVIDIA Version)
 iso_publisher="DolphinOS <https://github.com/DolphinOS-Development>"
-iso_application="DolphinOS installation ISO"
+iso_application="DolphinOS installation ISO NVIDIA Version"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d.%H.%M)"
 install_dir="dolphinos"
 buildmodes=('iso')
