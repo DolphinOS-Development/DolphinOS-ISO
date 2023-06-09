@@ -141,6 +141,7 @@ jobs:
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
         mkdir -p ~/.ssh
+<<<<<<< HEAD
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
@@ -180,6 +181,10 @@ jobs:
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+=======
+        ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
+        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+>>>>>>> 3ed5057 (Set SSH configs for NVIDIA ISO version)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
