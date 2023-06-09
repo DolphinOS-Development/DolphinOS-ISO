@@ -232,7 +232,7 @@ jobs:
 =======
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
-        ssh-add
+        ssh-add -l
         rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
