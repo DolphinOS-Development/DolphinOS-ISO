@@ -59,6 +59,7 @@ jobs:
       run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - uses: actions/checkout@v3
       with:
         ref: nvidia
@@ -70,12 +71,15 @@ jobs:
         cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
 =======
+=======
+>>>>>>> 9486767 (Check rsync SSH)
     # - name: Build ISO
     #   run: |
     #     mkdir work
     #     mkdir build
     #     mkarchiso -v -w work -o build archiso
     #     rm -rf work
+<<<<<<< HEAD
     # - name: Upload ISO to releases
     #   uses: svenstaro/upload-release-action@v2
     #   with:
@@ -138,6 +142,24 @@ jobs:
         rm -rf work
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    # - name: Upload ISO to Sourceforge Releases
+    #   run: |
+    #     mkdir -p ~/.ssh
+    #     ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
+    #     rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS
+    - uses: actions/checkout@v3
+      with:
+        ref: nvidia
+    # - name: Build NVIDIA ISO
+    #   run: |
+    #     rm -rf work
+    #     rm -rf build
+    #     mkdir work
+    #     mkdir build
+    #     mkarchiso -v -w work -o build archiso
+    #     rm -rf work
+>>>>>>> 9486767 (Check rsync SSH)
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
         mkdir -p ~/.ssh
@@ -183,8 +205,14 @@ jobs:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
 =======
         ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
+<<<<<<< HEAD
         rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 >>>>>>> 3ed5057 (Set SSH configs for NVIDIA ISO version)
+=======
+        #rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+        rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+
+>>>>>>> 9486767 (Check rsync SSH)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
