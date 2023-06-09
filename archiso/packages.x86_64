@@ -238,6 +238,7 @@ grub-btrfs
 ## Calamares
 dolphinos-calamares
 <<<<<<< HEAD
+<<<<<<< HEAD
 dolphinos-calamares-configs-nvidia
 ckbcomp
 dolphinos-iso-configs
@@ -256,6 +257,9 @@ gamemode
 mangohud
 =======
 dolphinos-calamares-configs
+=======
+dolphinos-calamares-configs-nvidia
+>>>>>>> 15dde4a (Set package for calamres NVIDIA version)
 ckbcomp
 dolphinos-iso-configs
 <<<<<<< HEAD
