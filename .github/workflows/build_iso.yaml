@@ -206,11 +206,15 @@ jobs:
 =======
         ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
 <<<<<<< HEAD
+<<<<<<< HEAD
         rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 >>>>>>> 3ed5057 (Set SSH configs for NVIDIA ISO version)
 =======
+=======
+        echo "${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" > ~/.ssh/authorized_keys
+>>>>>>> ec6fe2f (Trying somethin #1)
         #rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
-        rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
+        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
 
 >>>>>>> 9486767 (Check rsync SSH)
     - name: Publish Sourceforge link to releases
