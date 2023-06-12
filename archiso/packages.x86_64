@@ -220,6 +220,7 @@ ckbcomp
 <<<<<<< HEAD
 <<<<<<< HEAD
 dolphinos-iso-configs
+<<<<<<< HEAD
 
 # DolphinOS
 dolphin-emu-git
@@ -240,3 +241,12 @@ dolphinos-iso-configs
 dolphinos-iso-configs
 dolphinos-configs
 >>>>>>> 3921351 (Added dolphinos-configs)
+=======
+dolphinos-configs
+
+# DolphinOS
+dolphin-emu
+gamemode
+mangohud
+plymouth
+>>>>>>> 5d81470 (Added DolphinOS main packages)
