@@ -45,6 +45,7 @@ jobs:
         reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 >>>>>>> 70f045c (Fix typo)
         pacman -Syu --noconfirm
+<<<<<<< HEAD
         useradd builduser -m
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -174,13 +175,15 @@ jobs:
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+=======
+    - name: Set current date and hour as environment variable
+      run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
+>>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
     - uses: actions/checkout@v3
       with:
         ref: nvidia
     - name: Build NVIDIA ISO
       run: |
-        rm -rf work
-        rm -rf build
         mkdir work
         mkdir build
         mkarchiso -v -w work -o build archiso
@@ -198,6 +201,7 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
     - uses: actions/checkout@v3
+<<<<<<< HEAD
 =======
     - name: Upload NVIDIA ISO to releases
 <<<<<<< HEAD
@@ -213,6 +217,10 @@ jobs:
         pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
         cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
+=======
+      with:
+        ref: main
+>>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
     - name: Build ISO
       run: |
         rm -rf work
@@ -227,6 +235,7 @@ jobs:
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
@@ -277,6 +286,11 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
 >>>>>>> 8dbd6db (This time will work, I can feel it)
+=======
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
+      env:
+        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
+>>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
