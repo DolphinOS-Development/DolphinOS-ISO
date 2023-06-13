@@ -46,6 +46,9 @@ jobs:
 >>>>>>> 70f045c (Fix typo)
         pacman -Syu --noconfirm
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 63cf1d8 (Update build_iso.yaml)
         useradd builduser -m
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -298,6 +301,7 @@ jobs:
         tag: "DolphinOS-ISO-${{ env.NOW }}"
         allowUpdates: true
 <<<<<<< HEAD
+<<<<<<< HEAD
         makeLatest: true
 =======
         file_glob: true
@@ -348,3 +352,6 @@ jobs:
 =======
         makeLatest: true
 >>>>>>> 8dbd6db (This time will work, I can feel it)
+=======
+        makeLatest: true
+>>>>>>> 63cf1d8 (Update build_iso.yaml)
