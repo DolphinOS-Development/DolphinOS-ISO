@@ -272,7 +272,7 @@ dolphinos-configs
 dolphinos-configs
 
 # DolphinOS
-dolphin-emu
+dolphin-emu-git
 gamemode
 mangohud
 plymouth
