@@ -194,7 +194,7 @@ jobs:
       run: |
         mkdir -p archiso/airootfs/var/dolphinos-packages
         mkdir pkgs
-        pacman -Syw --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
+        pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
         cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
     - name: Build NVIDIA ISO
@@ -230,6 +230,7 @@ jobs:
         mkdir -p archiso/airootfs/var/dolphinos-packages
         mkdir pkgs
         pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
+<<<<<<< HEAD
         cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
 =======
@@ -252,6 +253,8 @@ jobs:
 =======
         mkdir pkgs
         pacman -Syw --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
+=======
+>>>>>>> 8a90643 (Add --noconfirm option)
         cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
 >>>>>>> 5ee5c58 (Change way packages are downloaded)
