@@ -221,6 +221,7 @@ ckbcomp
 <<<<<<< HEAD
 dolphinos-iso-configs
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # DolphinOS
 dolphin-emu-git
@@ -243,6 +244,8 @@ dolphinos-configs
 >>>>>>> 3921351 (Added dolphinos-configs)
 =======
 dolphinos-configs
+=======
+>>>>>>> 864031d (Added packages to local install)
 
 # DolphinOS
 dolphin-emu-git
