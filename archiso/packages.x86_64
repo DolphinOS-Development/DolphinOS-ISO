@@ -232,7 +232,7 @@ arch-install-scripts
 memtest86+
 mkinitcpio-archiso
 pv
-grub
+grub-silent
 grub-btrfs
 
 ## Calamares
@@ -242,6 +242,7 @@ dolphinos-calamares
 dolphinos-calamares-configs-nvidia
 ckbcomp
 dolphinos-iso-configs
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 # DolphinOS
@@ -270,6 +271,8 @@ dolphinos-configs
 >>>>>>> 3921351 (Added dolphinos-configs)
 =======
 dolphinos-configs
+=======
+>>>>>>> 01ac87e (Change packages)
 
 # DolphinOS
 dolphin-emu-git
