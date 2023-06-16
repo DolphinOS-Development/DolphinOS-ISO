@@ -254,5 +254,8 @@ cubeb
 libspng
 gamemode
 mangohud
+<<<<<<< HEAD
 plymouth
 >>>>>>> 5d81470 (Added DolphinOS main packages)
+=======
+>>>>>>> b84fb1a (Removed plymouth)
