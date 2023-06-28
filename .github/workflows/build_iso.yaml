@@ -23,6 +23,7 @@ jobs:
       run: |
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/\$repo/\$arch" >> /etc/pacman.conf
 =======
       run: |
@@ -35,6 +36,9 @@ jobs:
 =======
         echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/dolphinos-repo/\$repo/\$arch" >> /etc/pacman.conf
 >>>>>>> fc1bf60 (Revert back temporally to old pacman repo)
+=======
+        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/\$repo/\$arch" >> /etc/pacman.conf
+>>>>>>> d73b34c (Update build_iso.yaml)
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh
 =======
         timedatectl set-timezone Europe/Madrid
