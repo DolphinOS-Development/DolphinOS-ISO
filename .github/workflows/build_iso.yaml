@@ -22,11 +22,15 @@ jobs:
 <<<<<<< HEAD
       run: |
 <<<<<<< HEAD
+<<<<<<< HEAD
         echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/\$repo/\$arch" >> /etc/pacman.conf
 =======
       run: |
         echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://dolphinos-development.github.io/\$repo/\$arch" >> /etc/pacman.conf
 >>>>>>> 5ee5c58 (Change way packages are downloaded)
+=======
+        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://dolphinos-development.github.io/\$repo/\$arch" >> /etc/pacman.conf
+>>>>>>> 45771a1 (Changed repo URL from GitLab to GitHub)
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh
 =======
         timedatectl set-timezone Europe/Madrid
