@@ -75,7 +75,11 @@ nvidia-dkms
 nvidia-utils
 nvidia-settings
 
+## Wayland Compositor
+gamescope
+
 ## X system
+<<<<<<< HEAD
 xf86-input-libinput
 =======
 mesa
@@ -103,6 +107,16 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 xterm
+=======
+#xf86-input-libinput
+#xorg-server
+#xorg-xdpyinfo
+#xorg-xinit
+#xorg-xinput
+#xorg-xkill
+#xorg-xrandr
+#xterm
+>>>>>>> d2a5e68 (Modified the packages to build the ISO. The architecture is going to move from X11 to Wayland (gamescope) now that NVIDIA Drivers are working fine under Wayland)
 
 ## Audio hardware
 alsa-firmware
@@ -275,8 +289,7 @@ dolphinos-configs
 >>>>>>> 01ac87e (Change packages)
 
 # DolphinOS
-dolphin-emu-git
-dolphin-emu-nogui-git
+dolphin-emu
 cubeb
 libspng
 gamemode
