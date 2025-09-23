@@ -20,18 +20,8 @@ sysfsutils
 mkinitcpio
 mkinitcpio-archiso
 mkinitcpio-nfs-utils
-<<<<<<< HEAD
-<<<<<<< HEAD
 edk2-shell
 syslinux
-<<<<<<< HEAD
-=======
->>>>>>> 94d7526 (Add zsh to live system)
-=======
-edk2-shell
->>>>>>> 5526044 (Added syslinux and edk2-shell)
-=======
->>>>>>> e6d855a (Added syslinux package)
 zsh
 
 ## Filesystems
@@ -75,19 +65,16 @@ libva-mesa-driver
 vulkan-radeon
 vulkan-intel
 
-## Wayland Compositor
-gamescope
-
 ## X system
-#xf86-input-libinput
-#xf86-video-amdgpu
-#xorg-server
-#xorg-xdpyinfo
-#xorg-xinit
-#xorg-xinput
-#xorg-xkill
-#xorg-xrandr
-#xterm
+xf86-input-libinput
+xf86-video-amdgpu
+xorg-server
+xorg-xdpyinfo
+xorg-xinit
+xorg-xinput
+xorg-xkill
+xorg-xrandr
+xterm
 
 ## Audio hardware
 alsa-firmware
@@ -180,14 +167,7 @@ wget
 xdg-user-dirs-gtk
 xdg-utils
 xz
-<<<<<<< HEAD
-<<<<<<< HEAD
 openbox
-=======
->>>>>>> a5f1511 (Autostart calamares and add some packages)
-=======
-openbox
->>>>>>> 18c1fed (Updated needed packages)
 noto-fonts
 
 # VM SUPPORT
@@ -220,14 +200,11 @@ grub-btrfs
 dolphinos-calamares
 dolphinos-calamares-configs
 ckbcomp
-<<<<<<< HEAD
-<<<<<<< HEAD
 dolphinos-iso-configs
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # DolphinOS
-dolphin-emu
+dolphin-emu-git
+dolphin-emu-nogui-git
 python-flask
 dolphinos-webapp
 python-nmcli
@@ -237,27 +214,3 @@ cubeb
 libspng
 gamemode
 mangohud
-=======
-dolphinos-iso-configs
->>>>>>> f7d3488 (Add dolphinos-iso-configs package)
-=======
-dolphinos-iso-configs
-dolphinos-configs
->>>>>>> 3921351 (Added dolphinos-configs)
-=======
-dolphinos-configs
-=======
->>>>>>> 864031d (Added packages to local install)
-
-# DolphinOS
-dolphin-emu-git
-dolphin-emu-nogui-git
-cubeb
-libspng
-gamemode
-mangohud
-<<<<<<< HEAD
-plymouth
->>>>>>> 5d81470 (Added DolphinOS main packages)
-=======
->>>>>>> b84fb1a (Removed plymouth)
