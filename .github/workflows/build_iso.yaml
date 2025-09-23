@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   build_iso:
     name: Create and build DolphinOS ISO
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     permissions:
       contents: write
@@ -18,54 +18,11 @@ jobs:
 
     steps:
     - name: Update packages and install required dependencies for the job
-<<<<<<< HEAD
-<<<<<<< HEAD
       run: |
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/\$repo/\$arch" >> /etc/pacman.conf
-=======
-      run: |
-<<<<<<< HEAD
-        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://dolphinos-development.github.io/\$repo/\$arch" >> /etc/pacman.conf
->>>>>>> 5ee5c58 (Change way packages are downloaded)
-=======
-        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://dolphinos-development.github.io/\$repo/\$arch" >> /etc/pacman.conf
->>>>>>> 45771a1 (Changed repo URL from GitLab to GitHub)
-=======
-        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/dolphinos-repo/\$repo/\$arch" >> /etc/pacman.conf
->>>>>>> fc1bf60 (Revert back temporally to old pacman repo)
-=======
-        echo -e "[dolphinos-repo]\nSigLevel = Optional TrustedOnly\nServer = https://jesusxd88.github.io/\$repo/\$arch" >> /etc/pacman.conf
->>>>>>> d73b34c (Update build_iso.yaml)
         pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh
-=======
-        timedatectl set-timezone Europe/Madrid
-=======
-      run: | 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 0b57308 (Correctly set timezone)
-        pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager
-<<<<<<< HEAD
->>>>>>> 4de7316 (Change timezone)
         reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-=======
-        reflector rsync --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
->>>>>>> b56d16e (Set up releases to Sourceforge)
-=======
-        pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync
-=======
-        pacman -Syu --noconfirm --needed sudo git base-devel reflector archiso mkinitcpio-archiso squashfs-tools wget base-devel curl lftp networkmanager rsync openssh
->>>>>>> a878be4 (Add openssh to required packages)
-        reflector --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
->>>>>>> 70f045c (Fix typo)
         pacman -Syu --noconfirm
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 63cf1d8 (Update build_iso.yaml)
         useradd builduser -m
         passwd -d builduser
         echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -78,10 +35,6 @@ jobs:
         sudo -u builduser yay -S --noconfirm cubeb libspng
     - name: Set current date and hour as environment variable
       run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     - uses: actions/checkout@v3
       with:
         ref: nvidia
@@ -92,135 +45,15 @@ jobs:
         pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
         cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
-=======
-=======
->>>>>>> 9486767 (Check rsync SSH)
-    # - name: Build ISO
-    #   run: |
-    #     mkdir work
-    #     mkdir build
-    #     mkarchiso -v -w work -o build archiso
-    #     rm -rf work
-<<<<<<< HEAD
-    # - name: Upload ISO to releases
-    #   uses: svenstaro/upload-release-action@v2
-    #   with:
-    #     file_glob: true
-    #     file: build/dolphinos*.iso
-    #     tag: DolphinOS-ISO-${{ env.NOW }}
-    #     prerelease: false
-    #     overwrite: true
-    #     body: "Automatically built latest ISO"
-    #     make_latest: true
-=======
-=======
->>>>>>> 8dbd6db (This time will work, I can feel it)
-    - name: Build ISO
-      run: |
-        mkdir work
-        mkdir build
-        mkarchiso -v -w work -o build archiso
-        rm -rf work
-<<<<<<< HEAD
-<<<<<<< HEAD
-    - name: Upload ISO to releases
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "build/dolphinos*.iso"
-        body: "Automatically built latest ISO"
-<<<<<<< HEAD
-        make_latest: true
->>>>>>> 7e4c574 (Set to remove old directories before building iso)
-=======
-        tag: "DolphinOS-ISO-${{ env.NOW }}"
-        allowUpdates: true
-        makeLatest: true
-    # - name: Upload ISO to releases
-    #   uses: svenstaro/upload-release-action@v2
-    #   with:
-    #     file_glob: true
-    #     file: build/dolphinos*.iso
-    #     tag: DolphinOS-ISO-${{ env.NOW }}
-    #     prerelease: false
-    #     overwrite: true
-    #     body: "Automatically built latest ISO"
-    #     make_latest: true
->>>>>>> 436048e (Replaced upload to relases action)
-=======
-    - name: Upload ISO to Sourceforge Releases
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
-        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS
->>>>>>> b56d16e (Set up releases to Sourceforge)
-    - uses: actions/checkout@v3
-      with:
-        ref: nvidia
->>>>>>> f790810 (Setup action for building NVIDIA image)
-    - name: Build NVIDIA ISO
-      run: |
-        rm -rf work
-        rm -rf build
-        mkdir work
-        mkdir build
-        mkarchiso -v -w work -o build archiso
-        rm -rf work
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    # - name: Upload ISO to Sourceforge Releases
-    #   run: |
-    #     mkdir -p ~/.ssh
-    #     ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
-    #     rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS
-    - uses: actions/checkout@v3
-      with:
-        ref: nvidia
-    # - name: Build NVIDIA ISO
-    #   run: |
-    #     rm -rf work
-    #     rm -rf build
-    #     mkdir work
-    #     mkdir build
-    #     mkarchiso -v -w work -o build archiso
-    #     rm -rf work
->>>>>>> 9486767 (Check rsync SSH)
-=======
-    - name: Upload ISO to Sourceforge Releases
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
-        eval $(ssh-agent)
-        ssh-add - <<< "$SSH_KEY"
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
-      env:
-        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
-=======
-    - name: Set current date and hour as environment variable
-      run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
->>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
-    - uses: actions/checkout@v3
-      with:
-        ref: nvidia
-    - name: Download and copy system packages to archiso
-      run: |
-        mkdir -p archiso/airootfs/var/dolphinos-packages
-        mkdir pkgs
-        pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
-        cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
-        cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
     - name: Build NVIDIA ISO
       run: |
         mkdir work
         mkdir build
         mkarchiso -v -w work -o build archiso
         rm -rf work
->>>>>>> 8dbd6db (This time will work, I can feel it)
     - name: Upload NVIDIA ISO to Sourceforge releases
       run: |
         mkdir -p ~/.ssh
-<<<<<<< HEAD
-<<<<<<< HEAD
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
@@ -228,48 +61,15 @@ jobs:
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
     - uses: actions/checkout@v3
-<<<<<<< HEAD
-=======
-    - name: Upload NVIDIA ISO to releases
-<<<<<<< HEAD
-      uses: svenstaro/upload-release-action@v2
->>>>>>> f790810 (Setup action for building NVIDIA image)
       with:
-<<<<<<< HEAD
         ref: main
     - name: Download and copy system packages to archiso
       run: |
         mkdir -p archiso/airootfs/var/dolphinos-packages
         mkdir pkgs
         pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
-<<<<<<< HEAD
         cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
         cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
-=======
-      with:
-        ref: main
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
-=======
-    - name: Clone and copy system packages to archiso
-=======
-    - name: Download and copy system packages to archiso
->>>>>>> 5ee5c58 (Change way packages are downloaded)
-      run: |
-        mkdir -p archiso/airootfs/var/dolphinos-packages
-<<<<<<< HEAD
-        cp dolphinos-repo/x86_64/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages
-        cp dolphinos-repo/x86_64/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages
->>>>>>> 864031d (Added packages to local install)
-=======
-        mkdir pkgs
-        pacman -Syw --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
-=======
->>>>>>> 8a90643 (Add --noconfirm option)
-        cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
-        cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
->>>>>>> 5ee5c58 (Change way packages are downloaded)
     - name: Build ISO
       run: |
         rm -rf work
@@ -284,120 +84,13 @@ jobs:
         ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
         eval $(ssh-agent)
         ssh-add - <<< "$SSH_KEY"
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
       env:
         SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
-=======
-        ssh-keyscan -H frs.sourceforge.net > ~/.ssh/known_hosts
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
->>>>>>> 3ed5057 (Set SSH configs for NVIDIA ISO version)
-=======
-=======
-        echo "${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" > ~/.ssh/authorized_keys
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> ec6fe2f (Trying somethin #1)
-        #rsync -avz -e "ssh -i '${{ secrets.SOURCEFORGE_PRIVATE_KEY }}'" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
-=======
->>>>>>> bf64d1c (Trying something #2)
-=======
-        echo ~/.ssh/known_hosts
->>>>>>> 7238f06 (Trying something #3)
-=======
-        cat ~/.ssh/known_hosts
->>>>>>> 292392b (Trying something #4)
-        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
-
->>>>>>> 9486767 (Check rsync SSH)
-=======
-=======
-        ssh-keyscan -t ssh-ed25519 frs.sourceforge.net > ~/.ssh/known_hosts
->>>>>>> fbb4d03 (Maybe this works)
-        eval $(ssh-agent)
-        ssh-add - <<< "$SSH_KEY"
-        rsync -avz -e ssh archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
-=======
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" archiso/profiledef.sh dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
->>>>>>> 1502ef9 (Maybe this works #2)
-      env:
-        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
-<<<<<<< HEAD
->>>>>>> 7dc42b9 (Trying something #5)
-=======
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
-      env:
-        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
->>>>>>> 8dbd6db (This time will work, I can feel it)
-=======
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
-      env:
-        SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
->>>>>>> c89397f (Changed workflow file so NVIDIA ISO is built first)
     - name: Publish Sourceforge link to releases
       uses: ncipollo/release-action@v1
       with:
         body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
         tag: "DolphinOS-ISO-${{ env.NOW }}"
         allowUpdates: true
-<<<<<<< HEAD
-<<<<<<< HEAD
         makeLatest: true
-=======
-        file_glob: true
-        file: build/dolphinos*.iso
-        tag: DolphinOS-ISO-${{ env.NOW }}
-        prerelease: false
-        overwrite: true
-        body: "Automatically built latest ISO"
-        make_latest: true
->>>>>>> 04d1f27 (Changed upload to release settings)
-=======
-=======
-    - name: Upload NVIDIA ISO to Sourceforge releases
-      run: |
-        ssh-keyscan -H frs.sourceforge.net >> ~/.ssh/known_hosts
-        rsync -avz -e "ssh -i ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}" build/dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/DolphinOS/DolphinOS-NVIDIA
-    - name: Publish Sourceforge link to releases
->>>>>>> b56d16e (Set up releases to Sourceforge)
-      uses: ncipollo/release-action@v1
-      with:
-        body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
-        tag: "DolphinOS-ISO-${{ env.NOW }}"
-        allowUpdates: true
-<<<<<<< HEAD
-        makeLatest: true
-      # uses: svenstaro/upload-release-action@v2
-      # with:
-      #   file_glob: true
-      #   file: build/dolphinos*.iso
-      #   tag: DolphinOS-ISO-${{ env.NOW }}
-      #   prerelease: false
-      #   overwrite: true
-      #   body: "Automatically built latest ISO"
-      #   make_latest: true
->>>>>>> 436048e (Replaced upload to relases action)
-=======
-        makeLatest: true
->>>>>>> b56d16e (Set up releases to Sourceforge)
-=======
-    # - name: Publish Sourceforge link to releases
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
-    #     tag: "DolphinOS-ISO-${{ env.NOW }}"
-    #     allowUpdates: true
-    #     makeLatest: true
->>>>>>> a6cd2d7 (Trying something #6)
-=======
-        makeLatest: true
->>>>>>> 8dbd6db (This time will work, I can feel it)
-=======
-        makeLatest: true
->>>>>>> 63cf1d8 (Update build_iso.yaml)
