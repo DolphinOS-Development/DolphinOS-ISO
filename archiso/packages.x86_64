@@ -203,8 +203,8 @@ ckbcomp
 dolphinos-iso-configs
 
 # DolphinOS
-dolphin-emu-git
-dolphin-emu-nogui-git
+dolphin-emu
+#dolphin-emu-nogui
 python-flask
 dolphinos-webapp
 python-nmcli
