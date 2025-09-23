@@ -210,7 +210,6 @@ dolphinos-webapp
 python-nmcli
 python-xlib
 udiskie
-cubeb
 libspng
 gamemode
 mangohud
