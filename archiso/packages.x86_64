@@ -20,18 +20,8 @@ sysfsutils
 mkinitcpio
 mkinitcpio-archiso
 mkinitcpio-nfs-utils
-<<<<<<< HEAD
-<<<<<<< HEAD
 edk2-shell
 syslinux
-<<<<<<< HEAD
-=======
->>>>>>> 94d7526 (Add zsh to live system)
-=======
-edk2-shell
->>>>>>> 5526044 (Added syslinux and edk2-shell)
-=======
->>>>>>> e6d855a (Added syslinux package)
 zsh
 
 ## Filesystems
@@ -69,37 +59,12 @@ amd-ucode
 intel-ucode
 
 ## GPU
-<<<<<<< HEAD
-<<<<<<< HEAD
-nvidia-dkms
-nvidia-utils
-nvidia-settings
-
-## Wayland Compositor
-gamescope
-
-## X system
-<<<<<<< HEAD
-xf86-input-libinput
-=======
-mesa
-mesa-utils
-libva-mesa-driver
-vulkan-radeon
-vulkan-intel
-
-## X system
-xf86-input-libinput
-xf86-video-amdgpu
->>>>>>> cbc963c (Set correct driversn for Intel/AMD GPUs)
-=======
 nvidia-dkms
 nvidia-utils
 nvidia-settings
 
 ## X system
 xf86-input-libinput
->>>>>>> 4d1a34b (Setting up configs for NVIDIA drivers)
 xorg-server
 xorg-xdpyinfo
 xorg-xinit
@@ -107,16 +72,6 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 xterm
-=======
-#xf86-input-libinput
-#xorg-server
-#xorg-xdpyinfo
-#xorg-xinit
-#xorg-xinput
-#xorg-xkill
-#xorg-xrandr
-#xterm
->>>>>>> d2a5e68 (Modified the packages to build the ISO. The architecture is going to move from X11 to Wayland (gamescope) now that NVIDIA Drivers are working fine under Wayland)
 
 ## Audio hardware
 alsa-firmware
@@ -209,36 +164,9 @@ wget
 xdg-user-dirs-gtk
 xdg-utils
 xz
-<<<<<<< HEAD
-<<<<<<< HEAD
 openbox
 noto-fonts
-=======
-=======
-openbox
->>>>>>> 18c1fed (Updated needed packages)
-noto-fonts
 
-<<<<<<< HEAD
-# VM SUPPORT
-
-## Qemu
-qemu-guest-agent
-
-## Spice
-spice-vdagent
-
-## Virtual-box
-virtualbox-guest-utils
-
-## VMware
-open-vm-tools
-xf86-input-vmmouse
-xf86-video-vmware
->>>>>>> a5f1511 (Autostart calamares and add some packages)
-
-=======
->>>>>>> 4f454fd (Removed VM packages in NVIDIA version)
 # INSTALLER
 
 ## Live iso specific
@@ -251,13 +179,9 @@ grub-btrfs
 
 ## Calamares
 dolphinos-calamares
-<<<<<<< HEAD
-<<<<<<< HEAD
 dolphinos-calamares-configs-nvidia
 ckbcomp
 dolphinos-iso-configs
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # DolphinOS
 dolphin-emu-git
@@ -271,31 +195,3 @@ cubeb
 libspng
 gamemode
 mangohud
-=======
-dolphinos-calamares-configs
-=======
-dolphinos-calamares-configs-nvidia
->>>>>>> 15dde4a (Set package for calamres NVIDIA version)
-ckbcomp
-dolphinos-iso-configs
-<<<<<<< HEAD
->>>>>>> f7d3488 (Add dolphinos-iso-configs package)
-=======
-dolphinos-configs
->>>>>>> 3921351 (Added dolphinos-configs)
-=======
-dolphinos-configs
-=======
->>>>>>> 01ac87e (Change packages)
-
-# DolphinOS
-dolphin-emu
-cubeb
-libspng
-gamemode
-mangohud
-<<<<<<< HEAD
-plymouth
->>>>>>> cd80e6a (Added DolphinOS main packages)
-=======
->>>>>>> aa93e0a (Removed plymouth)
