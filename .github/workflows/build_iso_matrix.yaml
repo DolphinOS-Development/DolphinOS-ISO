@@ -63,7 +63,7 @@ jobs:
         run: |
           rm -rf work build
           mkdir work build
-          sudo mkarchiso -v -w work -o build archiso
+          sudo mkarchiso -v -r -w work -o build archiso
           sudo rm -rf work
 
       - name: Generate hashes
