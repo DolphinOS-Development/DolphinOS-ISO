@@ -191,7 +191,7 @@ arch-install-scripts
 memtest86+
 mkinitcpio-archiso
 pv
-grub-silent
+grub
 grub-btrfs
 
 ## Calamares
