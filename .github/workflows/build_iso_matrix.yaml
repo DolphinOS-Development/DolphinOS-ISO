@@ -31,10 +31,6 @@ jobs:
           ref: main
           path: repo
 
-      - name: Fix workspace permissions
-        working-directory: repo
-        run: sudo chown -R builduser:builduser .
-
       - name: Cache pacman packages
         uses: actions/cache@v4
         with:
@@ -47,13 +43,12 @@ jobs:
         working-directory: repo/${{ matrix.edition }}
         run: |
           mkdir -p archiso/airootfs/var/dolphinos-packages
-          mkdir "$(pwd)/pkgs"
-          sudo chown -R builduser:builduser "$(pwd)/pkgs"
+          mkdir pkgs
           if [ "${{ matrix.edition }}" = "intel-amd" ]; then
-            sudo pacman -Syw --noconfirm --cachedir "$(pwd)/pkgs" dolphinos-configs dolphinos-dolphin-data
-            cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
+            pacman -Syw --noconfirm --cachedir ./pkgs dolphinos-configs dolphinos-dolphin-data
+            cp /pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
           else
-            sudo pacman -Syw --noconfirm --cachedir "$(pwd)/pkgs" dolphinos-configs-nvidia dolphinos-dolphin-data
+            pacman -Syw --noconfirm --cachedir ./pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
             cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
           fi
           cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
@@ -61,11 +56,9 @@ jobs:
       - name: Build ISO
         working-directory: repo/${{ matrix.edition }}
         run: |
-          rm -rf /work 
-          rm -rf build
-          mkdir /work
-          mkdir build
-          sudo mkarchiso -v -r -w /work -o build archiso
+          rm -rf work build
+          mkdir work build 
+          sudo mkarchiso -v -r -w work -o build archiso
           sudo rm -rf work
 
       - name: Generate hashes
