@@ -12,7 +12,7 @@ jobs:
 
     container:
       image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_iso_builder_image:latest
-      options: --user 0:0
+      options: --privileged --user 0:0
       env:
         TZ: Europe/Madrid
 
