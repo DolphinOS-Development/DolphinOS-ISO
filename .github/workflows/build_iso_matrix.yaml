@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Set current date and hour
         id: date
-        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_OUTPUT
+        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" | sudo tee $GITHUB_OUTPUT
 
       - name: Checkout repository
         uses: actions/checkout@v5
