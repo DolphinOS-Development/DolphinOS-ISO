@@ -21,8 +21,9 @@ jobs:
         edition: [intel-amd, nvidia]
 
     steps:
-      - name: Set current date and hour as environment variable
-        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_ENV
+      - name: Set current date and hour
+        id: date
+        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" >> $GITHUB_OUTPUT
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -88,7 +89,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
-          tag: "DolphinOS-ISO-${{ env.NOW }}"
+          tag: "DolphinOS-ISO-${{ matrix.edition }}-${{ steps.date.outputs.now }}"
           allowUpdates: true
           makeLatest: true
           artifacts: "repo/${{ matrix.edition }}/build/dolphinos*.sha256"
