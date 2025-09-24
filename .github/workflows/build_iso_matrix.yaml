@@ -12,7 +12,7 @@ jobs:
 
     container:
       image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_iso_builder_image:latest
-      options: --privileged --user 0:0
+      options: --user 0:0 --privileged
       env:
         TZ: Europe/Madrid
 
@@ -61,9 +61,11 @@ jobs:
       - name: Build ISO
         working-directory: repo/${{ matrix.edition }}
         run: |
-          rm -rf work build
-          mkdir work build
-          sudo mkarchiso -v -r -w work -o build archiso
+          rm -rf /work 
+          rm -rf build
+          mkdir /work
+          mkdir build
+          sudo mkarchiso -v -r -w /work -o build archiso
           sudo rm -rf work
 
       - name: Generate hashes
