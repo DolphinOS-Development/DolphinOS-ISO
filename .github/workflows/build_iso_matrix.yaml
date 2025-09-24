@@ -47,13 +47,13 @@ jobs:
         working-directory: repo/${{ matrix.edition }}
         run: |
           mkdir -p archiso/airootfs/var/dolphinos-packages
-          mkdir pkgs
-          sudo chown -R builduser:builduser pkgs
+          mkdir "$(pwd)/pkgs"
+          sudo chown -R builduser:builduser "$(pwd)/pkgs"
           if [ "${{ matrix.edition }}" = "intel-amd" ]; then
-            sudo pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
+            sudo pacman -Syw --noconfirm --cachedir "$(pwd)/pkgs" dolphinos-configs dolphinos-dolphin-data
             cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
           else
-            sudo pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
+            sudo pacman -Syw --noconfirm --cachedir "$(pwd)/pkgs" dolphinos-configs-nvidia dolphinos-dolphin-data
             cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
           fi
           cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
