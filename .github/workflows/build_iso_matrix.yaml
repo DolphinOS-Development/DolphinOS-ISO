@@ -48,6 +48,7 @@ jobs:
         run: |
           mkdir -p archiso/airootfs/var/dolphinos-packages
           mkdir pkgs
+          sudo chown -R builduser:builduser pkgs
           if [ "${{ matrix.edition }}" = "intel-amd" ]; then
             sudo pacman -Syw --noconfirm --cachedir pkgs dolphinos-configs dolphinos-dolphin-data
             cp pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
