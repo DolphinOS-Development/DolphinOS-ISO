@@ -25,15 +25,15 @@ jobs:
         id: date
         run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" | sudo tee $GITHUB_OUTPUT
 
+      - name: Fix workspace permissions
+        working-directory: repo
+        run: sudo chown -R builduser:builduser .
+
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           ref: main
           path: repo
-
-      - name: Fix workspace permissions
-        working-directory: repo
-        run: sudo chown -R builduser:builduser .
 
       - name: Cache pacman packages
         uses: actions/cache@v4
