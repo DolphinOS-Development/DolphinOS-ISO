@@ -43,15 +43,15 @@ jobs:
         working-directory: repo/${{ matrix.edition }}
         run: |
           mkdir -p archiso/airootfs/var/dolphinos-packages
-          mkdir pkgs
+          mkdir /pkgs
           if [ "${{ matrix.edition }}" = "intel-amd" ]; then
-            pacman -Syw --noconfirm --cachedir ./pkgs dolphinos-configs dolphinos-dolphin-data
+            pacman -Syw --noconfirm --cachedir /pkgs dolphinos-configs dolphinos-dolphin-data
             cp /pkgs/dolphinos-configs*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs.pkg.tar.zst
           else
-            pacman -Syw --noconfirm --cachedir ./pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
-            cp pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
+            pacman -Syw --noconfirm --cachedir /pkgs dolphinos-configs-nvidia dolphinos-dolphin-data
+            cp /pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
           fi
-          cp pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
+          cp /pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
 
       - name: Build ISO
         working-directory: repo/${{ matrix.edition }}
