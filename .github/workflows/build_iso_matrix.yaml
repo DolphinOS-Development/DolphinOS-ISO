@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Set current date and hour
         id: date
-        run: echo "NOW=$(date +'%Y-%m-%d_%H-%M')" | sudo tee $GITHUB_OUTPUT
+        run: echo "NOW=$(date +'%Y.%m.%d.%H.%M')" | sudo tee $GITHUB_OUTPUT
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -64,7 +64,7 @@ jobs:
       - name: Generate hashes
         working-directory: repo/${{ matrix.edition }}/build
         run: |
-          sha256sum dolphinos*.iso > dolphinos-${{ matrix.edition }}.sha256
+          sha256sum dolphinos*.iso > dolphinos-${{ matrix.edition }}-.sha256
 
       - name: Upload ISO to Sourceforge Releases
         working-directory: repo/${{ matrix.edition }}/build
@@ -81,11 +81,36 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
 
-      - name: Publish Sourceforge link to releases
+      - name: Upload hashes as artifact (for release job)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.edition }}-${{ steps.date.outputs.now }}-hash
+          path: repo/${{ matrix.edition }}/build/*.sha256
+
+  publish_release:
+    name: Publish Release
+    needs: build_iso
+    runs-on: self-hosted
+    steps:
+      - name: Download all hash artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: hashes
+
+      - name: List hashes
+        run: ls -R hashes
+
+      - name: Publish GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          body: "Automatically built latest ISO\nLink: https://sourceforge.net/projects/dolphinos"
-          tag: "DolphinOS-ISO-${{ matrix.edition }}-${{ steps.date.outputs.now }}"
-          allowUpdates: true
+          tag: DolphinOS-ISO-${{ needs.build_iso.outputs.date }}
+          name: DolphinOS ISO ${{ needs.build_iso.outputs.date }}
           makeLatest: true
-          artifacts: "repo/${{ matrix.edition }}/build/dolphinos*.sha256"
+          allowUpdates: true
+          artifacts: "hashes/**/*.sha256"
+          body: |
+            Automatically built latest ISOs.
+
+            **Download from SourceForge:**
+            - Intel/AMD:  https://sourceforge.net/projects/dolphinos/files/DolphinOS/dolphinos-${{ steps.date.outputs.now }}-x86_64.iso/download
+            - NVIDIA:     https://sourceforge.net/projects/dolphinos/files/DolphinOS-NVIDIA/dolphinos-nvidia-${{ steps.date.outputs.now }}-x86_64.iso/download
