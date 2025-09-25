@@ -24,7 +24,7 @@ jobs:
       - name: Set current date and hour
         id: date
         run: |
-          "NOW=$(date +'%Y.%m.%d.%H.%M')"
+          NOW=$(date +'%Y.%m.%d.%H.%M')
           echo "NOW=$NOW" | sudo tee $GITHUB_OUTPUT
           echo "TAG_NOW=$(echo $NOW | tr '.' '_')" | sudo tee -a $GITHUB_ENV
 
