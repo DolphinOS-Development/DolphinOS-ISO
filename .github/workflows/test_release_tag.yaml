@@ -1,0 +1,39 @@
+name: Test Release Tags
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test-release:
+    runs-on: self-hosted
+
+    container:
+      image: ghcr.io/dolphinos-development/dolphinos-buildsystem-images/arch_iso_builder_image:latest
+      options: --user 0:0 --privileged
+      env:
+        TZ: Europe/Madrid
+
+    steps:
+      - name: Set current date and hour
+        id: date
+        run: |
+          NOW=$(date +'%Y.%m.%d.%H.%M')
+          TAG_NOW="v$(echo "$NOW" | tr '.' '_')"
+          echo "NOW=$NOW" | tee -a $GITHUB_ENV
+          echo "TAG_NOW=$TAG_NOW" | tee -a $GITHUB_ENV
+
+      - name: Debug values
+        run: |
+          echo "NOW=${NOW}"
+          echo "TAG_NOW=${TAG_NOW}"
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          body: "Test release with new tag format"
+          tag: ${{ env.TAG_NOW }}
+          allowUpdates: true
+          makeLatest: true
