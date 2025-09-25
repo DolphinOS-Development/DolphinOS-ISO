@@ -27,7 +27,7 @@ jobs:
           NOW=$(date +'%Y.%m.%d.%H.%M')
           TAG_NOW="v$(echo "$NOW" | tr '.' '_')"
           echo "NOW=$NOW" | tee -a $GITHUB_ENV
-          echo "TAG_NOW=$TAG_NOW" | tee -a $GITHUB_ENV
+          echo $TAG_NOW >> date.txt
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -89,7 +89,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.edition }}-${{ env.NOW }}-hash
-          path: repo/${{ matrix.edition }}/build/*.sha256
+          path: |
+            repo/${{ matrix.edition }}/build/*.sha256
+            date.txt
 
   publish_release:
     name: Publish Release
@@ -97,12 +99,18 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Download all hash artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: hashes
 
       - name: List hashes
         run: ls -R hashes
+
+      - name: Read time var from file
+        run: |
+          TAG_NOW=$(cat hashes/date.txt)
+          echo "TAG_NOW=$TAG_NOW" | tee -a $GITHUB_ENV
+          echo "Tag to use: $TAG_NOW"
 
       - name: Publish GitHub Release
         uses: ncipollo/release-action@v1
