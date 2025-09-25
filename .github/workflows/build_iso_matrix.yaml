@@ -74,9 +74,9 @@ jobs:
           eval $(ssh-agent)
           ssh-add - <<< "$SSH_KEY"
           if [ "${{ matrix.edition }}" = "intel-amd" ]; then
-            rsync -avz -e "ssh -o StrictHostKeyChecking=no" dolphinos*.iso dolphinos*.sha256 dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
+            rsync -avz -e "ssh -o StrictHostKeyChecking=no" dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS
           else
-            rsync -avz -e "ssh -o StrictHostKeyChecking=no" dolphinos*.iso dolphinos*.sha256 dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
+            rsync -avz -e "ssh -o StrictHostKeyChecking=no" dolphinos*.iso dolphinos@frs.sourceforge.net:/home/frs/project/dolphinos/DolphinOS-NVIDIA
           fi
         env:
           SSH_KEY: ${{ secrets.SOURCEFORGE_PRIVATE_KEY }}
