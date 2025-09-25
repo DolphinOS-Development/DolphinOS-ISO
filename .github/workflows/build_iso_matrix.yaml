@@ -64,7 +64,7 @@ jobs:
       - name: Generate hashes
         working-directory: repo/${{ matrix.edition }}/build
         run: |
-          sha256sum dolphinos*.iso > dolphinos-${{ matrix.edition }}-.sha256
+          sha256sum dolphinos*.iso > dolphinos-${{ matrix.edition }}-${{ needs.build_iso.outputs.date }}.sha256
 
       - name: Upload ISO to Sourceforge Releases
         working-directory: repo/${{ matrix.edition }}/build
