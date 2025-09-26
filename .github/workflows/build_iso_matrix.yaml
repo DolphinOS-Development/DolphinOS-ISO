@@ -57,12 +57,13 @@ jobs:
           pacman -Syw --noconfirm --cachedir /pkgs dolphinos-dolphin-data linux-zen linux-lts linux-zen-headers linux-lts-headers linux-firmware
           ls /pkgs
           ls archiso/airootfs/var/dolphinos-packages/
-          cp /pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
-          cp /pkgs/linux-zen*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-zen.pkg.tar.zst
-          cp /pkgs/linux-zen-headers*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-zen-headers.pkg.tar.zst
-          cp /pkgs/linux-lts*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-lts.pkg.tar.zst
-          cp /pkgs/linux-lts-headers*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-lts-headers.pkg.tar.zst
-          cp /pkgs/linux-firmware*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-firmware.pkg.tar.zst
+          cp /pkgs/linux-zen-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+          cp /pkgs/linux-zen-headers-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+          cp /pkgs/linux-lts-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+          cp /pkgs/linux-lts-headers-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+          cp /pkgs/linux-firmware-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+          cp /pkgs/dolphinos-dolphin-data-*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/
+
 
       - name: Build ISO
         working-directory: repo/${{ matrix.edition }}
