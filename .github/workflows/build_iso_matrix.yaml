@@ -25,9 +25,9 @@ jobs:
         id: date
         run: |
           NOW=$(date +'%Y.%m.%d.%H.%M')
-          TAG_NOW="v$(echo "$NOW" | tr '.' '_')"
+          TAG_NOW="$(echo "$NOW" | tr '.' '_')"
           echo "NOW=$NOW" | tee -a $GITHUB_ENV
-          echo $TAG_NOW >> date.txt
+          echo $TAG_NOW > $GITHUB_WORKSPACE/date.txt
 
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -90,8 +90,8 @@ jobs:
         with:
           name: ${{ matrix.edition }}-${{ env.NOW }}-hash
           path: |
+            $GITHUB_WORKSPACE/date.txt
             repo/${{ matrix.edition }}/build/*.sha256
-            date.txt
 
   publish_release:
     name: Publish Release
