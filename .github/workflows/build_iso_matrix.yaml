@@ -55,6 +55,8 @@ jobs:
             cp /pkgs/dolphinos-configs-nvidia*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-configs-nvidia.pkg.tar.zst
           fi
           pacman -Syw --noconfirm --cachedir /pkgs dolphinos-dolphin-data linux-zen linux-lts linux-zen-headers linux-lts-headers linux-firmware
+          ls /pkgs
+          ls archiso/airootfs/var/dolphinos-packages/
           cp /pkgs/dolphinos-dolphin-data*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/dolphinos-dolphin-data.pkg.tar.zst
           cp /pkgs/linux-zen*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-zen.pkg.tar.zst
           cp /pkgs/linux-zen-headers*.pkg.tar.zst archiso/airootfs/var/dolphinos-packages/linux-zen-headers.pkg.tar.zst
