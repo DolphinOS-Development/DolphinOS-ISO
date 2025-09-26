@@ -117,8 +117,9 @@ jobs:
           # Convert dots to underscores
           TAG_NOW=$(echo "$DATE" | tr '.' '_')
 
-          echo "TAG_NOW=$TAG_NOW" >> $GITHUB_ENV
+          echo "NOW=$DATE" | tee -a $GITHUB_ENV
           echo "Tag to use: $TAG_NOW"
+          echo "TAG_NOW=$TAG_NOW" | tee -a $GITHUB_ENV
 
       - name: Publish GitHub Release
         uses: ncipollo/release-action@v1
