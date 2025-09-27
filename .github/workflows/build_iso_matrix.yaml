@@ -113,22 +113,11 @@ jobs:
       - name: List hashes
         run: ls -R hashes
 
-      - name: Extract TAG_NOW from hash file name
-        working-directory: hashes
+      - name: Set current date and hour
+        id: date
         run: |
-          # Grab the first sha256 filename
-          FILE=$(find . -type f -name "*.sha256" | head -n1)
-          echo "Found hash file: $FILE"
-
-          # Extract the date part (assuming format: dolphinos-<edition>-YYYY.MM.DD.HH.MM-...)
-          DATE=$(echo "$FILE" | grep -oE '[0-9]{4}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}')
-
-          # Convert dots to underscores
-          TAG_NOW=$(echo "$DATE" | tr '.' '_')
-
-          echo "NOW=$DATE" | tee -a $GITHUB_ENV
-          echo "Tag to use: $TAG_NOW"
-          echo "TAG_NOW=$TAG_NOW" | tee -a $GITHUB_ENV
+          NOW=$(date +'%Y_%m_%d_%H_%M')
+          echo "TAG_NOW=$NOW" | tee -a $GITHUB_ENV
 
       - name: Publish GitHub Release
         uses: ncipollo/release-action@v1
@@ -142,5 +131,5 @@ jobs:
             Automatically built latest ISOs.
 
             **Download from SourceForge:**
-            - Intel/AMD:  https://sourceforge.net/projects/dolphinos/files/DolphinOS/dolphinos-${{ env.NOW }}-x86_64.iso/download
-            - NVIDIA:     https://sourceforge.net/projects/dolphinos/files/DolphinOS-NVIDIA/dolphinos-nvidia-${{ env.NOW }}-x86_64.iso/download
+            - Intel/AMD GPU:  https://sourceforge.net/projects/dolphinos/files/DolphinOS/
+            - NVIDIA GPU:     https://sourceforge.net/projects/dolphinos/files/DolphinOS-NVIDIA/
