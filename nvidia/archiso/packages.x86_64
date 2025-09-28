@@ -189,6 +189,8 @@ dolphinos-webapp
 python-flask
 python-nmcli
 python-xlib
+python-pyxdg
+unclutter
 udiskie
 gamemode
 mangohud
