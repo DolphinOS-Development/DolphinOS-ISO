@@ -8,7 +8,7 @@ iso_application="DolphinOS installation ISO"
 iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y_%m_%d_%H_%M)"
 install_dir="dolphinos"
 buildmodes=('iso')
-bootmodes=('bios.syslinux' 'uefi.grub')
+bootmodes=('bios.syslinux' 'uefi.systemd-boot')
 arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="squashfs"
