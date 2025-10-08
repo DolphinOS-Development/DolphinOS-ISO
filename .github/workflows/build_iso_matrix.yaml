@@ -99,6 +99,9 @@ jobs:
           name: ${{ matrix.edition }}-${{ env.NOW }}-${{ github.run_id }}-hash
           path: |
             repo/${{ matrix.edition }}/build/*.sha256
+      - name: Clean workspace
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name '.github' -exec rm -rf {} +
 
   publish_release:
     name: Publish Release
@@ -133,3 +136,6 @@ jobs:
             **Download from SourceForge:**
             - Intel/AMD GPU:  https://sourceforge.net/projects/dolphinos/files/DolphinOS/
             - NVIDIA GPU:     https://sourceforge.net/projects/dolphinos/files/DolphinOS-NVIDIA/
+      - name: Clean workspace
+        run: |
+          find . -mindepth 1 -maxdepth 1 ! -name '.github' -exec rm -rf {} +
